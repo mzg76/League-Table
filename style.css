@@ -1,0 +1,179 @@
+:root {
+  --bg: #eef5f0;
+  --card: #ffffff;
+  --text: #0f1f16;
+  --muted: #5b6b61;
+  --line: #dbe7df;
+  --green: #16803d;
+  --green-strong: #0f6a31;
+  --green-soft: #e3f4e8;
+  --leader: #fff6d6;
+  --leader-line: #e8b923;
+  --danger: #c0352b;
+  --input: #f5faf6;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 16px rgba(10,60,30,.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #07140d;
+    --card: #0f2219;
+    --text: #e8f3ec;
+    --muted: #93a99b;
+    --line: #1f3a2b;
+    --green: #22a654;
+    --green-strong: #2cc163;
+    --green-soft: #133523;
+    --leader: #2c2810;
+    --leader-line: #d4a72c;
+    --danger: #ef6b5f;
+    --input: #0a1a12;
+    --shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.hero {
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 40px, transparent 40px 80px),
+    linear-gradient(160deg, #1b9a4b, #0d5f2c);
+  color: #fff;
+  padding: calc(env(safe-area-inset-top) + 18px) 16px 40px;
+}
+.hero-inner {
+  max-width: 560px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.hero h1 { margin: 0; font-size: 1.5rem; letter-spacing: -.01em; }
+
+.status {
+  font-size: .75rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 999px;
+  background: rgba(255,255,255,.18);
+  white-space: nowrap;
+}
+.status::before {
+  content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 6px; background: #ccc; vertical-align: 1px;
+}
+.status.live::before { background: #6dff9c; box-shadow: 0 0 6px #6dff9c; }
+.status.offline::before { background: #ffcc4d; }
+.status.local::before { background: #ddd; }
+
+main {
+  max-width: 560px; margin: -24px auto 0;
+  padding: 0 16px calc(env(safe-area-inset-bottom) + 24px);
+}
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.card h2 { margin: 0 0 10px; font-size: 1.05rem; }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.card-head h2 { margin: 0; }
+.hint { color: var(--muted); font-size: .85rem; margin: 4px 0 12px; }
+.footer { text-align: center; color: var(--muted); font-size: .8rem; }
+
+/* ---------- Table ---------- */
+.table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.table th {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--muted); font-weight: 600; text-align: left;
+  padding: 6px 6px; border-bottom: 1px solid var(--line);
+}
+.table td { padding: 12px 6px; border-bottom: 1px solid var(--line); }
+.table tr:last-child td { border-bottom: 0; }
+.c-pos { width: 2.4em; text-align: center !important; font-weight: 700; }
+.c-num { width: 3.6em; text-align: center !important; }
+.c-pts { font-weight: 800; font-size: 1.05rem; }
+.pl-name { font-weight: 600; display: block; }
+.pl-team { color: var(--muted); font-size: .78rem; display: block; }
+.table tr.leader td { background: var(--leader); }
+.table tr.leader td:first-child { box-shadow: inset 4px 0 0 var(--leader-line); border-radius: 8px 0 0 8px; }
+.table tr.leader td:last-child { border-radius: 0 8px 8px 0; }
+.crown { margin-left: 4px; }
+
+/* ---------- Results ---------- */
+.results { display: flex; flex-direction: column; gap: 8px; }
+.match {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto 1fr auto;
+  align-items: center; gap: 6px;
+  padding: 8px 6px 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.match.played { background: var(--green-soft); border-color: transparent; }
+.side { min-width: 0; }
+.side.away { text-align: right; }
+.side .pl-name, .side .pl-team { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.score {
+  width: 44px; height: 44px;
+  font: inherit; font-size: 1.2rem; font-weight: 700; text-align: center;
+  color: var(--text);
+  background: var(--input);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  -moz-appearance: textfield; appearance: textfield;
+}
+.score::-webkit-outer-spin-button, .score::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.score:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 25%, transparent); }
+.dash { color: var(--muted); font-weight: 700; }
+.more {
+  width: 36px; height: 44px; border: 0; background: transparent; color: var(--muted);
+  font-size: 1.3rem; border-radius: 8px; cursor: pointer;
+}
+.more:active { background: var(--line); }
+.empty { color: var(--muted); text-align: center; padding: 12px; }
+
+/* ---------- Players ---------- */
+.players { display: flex; flex-direction: column; gap: 10px; }
+.player-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.field {
+  width: 100%; font: inherit; color: var(--text);
+  background: var(--input); border: 1.5px solid var(--line); border-radius: 10px;
+  padding: 10px 12px;
+}
+.field:focus { outline: none; border-color: var(--green); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  font: inherit; font-weight: 600; font-size: .9rem;
+  padding: 10px 14px; border-radius: 10px;
+  border: 1.5px solid var(--line); background: var(--card); color: var(--text);
+  cursor: pointer;
+}
+.btn-primary { background: var(--green); border-color: var(--green); color: #fff; }
+.btn-primary:active { background: var(--green-strong); }
+.btn-danger { color: var(--danger); border-color: transparent; background: transparent; padding-left: 0; }
+
+/* ---------- Dialog ---------- */
+dialog {
+  border: 0; border-radius: 16px; padding: 20px;
+  width: min(92vw, 380px);
+  background: var(--card); color: var(--text);
+  box-shadow: 0 10px 40px rgba(0,0,0,.3);
+}
+dialog::backdrop { background: rgba(0,0,0,.45); }
+dialog h3 { margin: 0 0 14px; }
+dialog label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: 12px; }
+dialog select {
+  display: block; width: 100%; margin-top: 4px;
+  font: inherit; font-size: 1rem; color: var(--text);
+  background: var(--input); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px;
+}
+.dialog-actions { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.spacer { flex: 1; }
+.error { color: var(--danger); font-size: .85rem; margin: 0 0 8px; }

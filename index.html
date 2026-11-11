@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FIFA League</title>
+  <meta name="description" content="Our 3-player FIFA league table">
+  <meta name="theme-color" content="#16803d" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1f14" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FIFA League">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>⚽ FIFA League</h1>
+      <span id="status" class="status" title="Sync status">…</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Table</h2>
+      <table class="table" aria-label="League table">
+        <thead>
+          <tr>
+            <th class="c-pos">Pos</th>
+            <th class="c-player">Player</th>
+            <th class="c-num">Played</th>
+            <th class="c-num">GD</th>
+            <th class="c-num">Pts</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Results</h2>
+        <button id="addMatch" class="btn btn-primary" type="button">+ Add match</button>
+      </div>
+      <p class="hint">Type a score and the table updates. Leave it blank if the game hasn't been played.</p>
+      <div id="results" class="results"></div>
+    </section>
+
+    <section class="card">
+      <h2>Players</h2>
+      <div id="players" class="players"></div>
+    </section>
+
+    <p class="footer">Anyone with the link can enter results.</p>
+  </main>
+
+  <dialog id="matchDialog">
+    <form id="matchForm" method="dialog">
+      <h3 id="matchDialogTitle">Add match</h3>
+      <label>Home
+        <select id="mdHome" required></select>
+      </label>
+      <label>Away
+        <select id="mdAway" required></select>
+      </label>
+      <p id="mdError" class="error" hidden>Pick two different players.</p>
+      <div class="dialog-actions">
+        <button type="button" id="mdDelete" class="btn btn-danger">Delete</button>
+        <span class="spacer"></span>
+        <button type="button" id="mdCancel" class="btn">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
