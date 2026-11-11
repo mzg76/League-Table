@@ -5,6 +5,6 @@
 //  one phone (scores are not shared).
 // ============================================================
 window.LEAGUE_CONFIG = {
-  SUPABASE_URL: '',      // e.g. 'https://abcdefghijklm.supabase.co'
+  SUPABASE_URL: 'https://wqpxdoqmzgqfgowstbnr.supabase.co',    // e.g. 'https://abcdefghijklm.supabase.co'
   SUPABASE_ANON_KEY: ''  // the long "Publishable" / "anon public" key
 };
